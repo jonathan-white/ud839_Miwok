@@ -16,16 +16,11 @@
 package com.example.android.miwok;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import java.lang.reflect.Array;
+import android.widget.ListView;
+
 import java.util.ArrayList;
-import java.util.List;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,27 +29,26 @@ public class NumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numbers);
+        setContentView(R.layout.word_list);
 
-        ArrayList<String> englishNum = new ArrayList<String>();
+        ArrayList<Word> words = new ArrayList<Word>();
 
-        englishNum.add("one");
-        englishNum.add("two");
-        englishNum.add("three");
-        englishNum.add("four");
-        englishNum.add("five");
-        englishNum.add("six");
-        englishNum.add("seven");
-        englishNum.add("eight");
-        englishNum.add("nine");
-        englishNum.add("ten");
+        words.add(new Word("one", "lutti"));
+        words.add(new Word("two", "otiiko"));
+        words.add(new Word("three", "tolookosu"));
+        words.add(new Word("four", "oyyisa"));
+        words.add(new Word("five", "massokka"));
+        words.add(new Word("six", "temmokka"));
+        words.add(new Word("seven", "kenekaku"));
+        words.add(new Word("eight", "kawinta"));
+        words.add(new Word("nine", "wo’e"));
+        words.add(new Word("ten", "na’aacha"));
 
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, englishNum);
+        WordAdapter adapter = new WordAdapter(this, words);
 
         ListView listView = (ListView) findViewById(R.id.list);
 
-
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(adapter);
 
     }
 }
