@@ -1,21 +1,35 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.Image;
+import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 public class WordAdapter extends ArrayAdapter {
 
-    public WordAdapter(@NonNull Activity context, @NonNull ArrayList<Word> words) {
+    /**Resource ID for the background color for this list of words*/
+    private int mColorResourceId;
+    private MediaPlayer mediaPlayer;
+    Word currentWord;
+
+    public WordAdapter(@NonNull Activity context, @NonNull ArrayList<Word> words, @NonNull int backgroundColor) {
         super(context, 0, words);
+        mColorResourceId = backgroundColor;
     }
 
     @NonNull
@@ -30,7 +44,22 @@ public class WordAdapter extends ArrayAdapter {
         }
 
         // Get the {@link Word} object located at this position in the list
-        Word currentWord = (Word) getItem(position);
+        currentWord = (Word) getItem(position);
+
+        Log.v("currentWord: ", currentWord.getDefaultWord());
+
+        // Find the ImageView in the list_item.xml layout with the ID image
+        ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.image);
+        // Get the image resource ID from the current Word object and set the image to iconImageView
+        if(currentWord.hasImage()) {
+            // Set the ImageView to the image resource specified in the current Word
+            iconImageView.setImageResource(currentWord.getImageResourceId());
+            // Make sure the view is visible
+            iconImageView.setVisibility(View.VISIBLE);
+        } else {
+            // Make sure the view is not visible
+            iconImageView.setVisibility(View.GONE);
+        }
 
         // Find the TextView in the list_item.xml layout with the ID default_text_view
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
@@ -43,6 +72,30 @@ public class WordAdapter extends ArrayAdapter {
         // Get the Miwok word from the current Word object and
         // set this text on the Miwok TextView
         miwokTextView.setText(currentWord.getMiwokWord());
+
+        // Set the theme color for the list item
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        // Find the color that the resource ID maps to
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        //Set the background color of the text container view
+        textContainer.setBackgroundColor(color);
+
+
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("onClick Method: ", currentWord.getDefaultWord());
+                Toast.makeText(getContext(),
+                        currentWord.getDefaultWord(),
+                        Toast.LENGTH_SHORT).show();
+                // Creating a new media player that is set to the resource Id of the current word
+                mediaPlayer = MediaPlayer.create(getContext(), currentWord.getAudioResourceId());
+                mediaPlayer.start();
+//                Toast.makeText(getContext(),
+//                        getContext().getResources().getResourceEntryName(currentWord.getAudioResourceId()),
+//                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return listItemView;
     }
