@@ -2,15 +2,14 @@ package com.example.android.miwok;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +23,6 @@ public class WordAdapter extends ArrayAdapter {
 
     /**Resource ID for the background color for this list of words*/
     private int mColorResourceId;
-    private MediaPlayer mediaPlayer;
-    Word currentWord;
 
     public WordAdapter(@NonNull Activity context, @NonNull ArrayList<Word> words, @NonNull int backgroundColor) {
         super(context, 0, words);
@@ -44,9 +41,7 @@ public class WordAdapter extends ArrayAdapter {
         }
 
         // Get the {@link Word} object located at this position in the list
-        currentWord = (Word) getItem(position);
-
-        Log.v("currentWord: ", currentWord.getDefaultWord());
+        Word currentWord = (Word) getItem(position);
 
         // Find the ImageView in the list_item.xml layout with the ID image
         ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.image);
@@ -80,23 +75,7 @@ public class WordAdapter extends ArrayAdapter {
         //Set the background color of the text container view
         textContainer.setBackgroundColor(color);
 
-
-        listItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.v("onClick Method: ", currentWord.getDefaultWord());
-                Toast.makeText(getContext(),
-                        currentWord.getDefaultWord(),
-                        Toast.LENGTH_SHORT).show();
-                // Creating a new media player that is set to the resource Id of the current word
-                mediaPlayer = MediaPlayer.create(getContext(), currentWord.getAudioResourceId());
-                mediaPlayer.start();
-//                Toast.makeText(getContext(),
-//                        getContext().getResources().getResourceEntryName(currentWord.getAudioResourceId()),
-//                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
         return listItemView;
     }
+
 }
