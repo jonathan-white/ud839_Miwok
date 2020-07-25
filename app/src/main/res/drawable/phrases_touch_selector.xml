@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- when the user is pressing down in a view -->
+    <item android:state_pressed="true"
+        android:drawable="@color/category_phrases_pressed" />
+
+    <!-- When the view is activated -->
+    <item android:state_activated="true"
+        android:drawable="@color/sunshine_light_blue" />
+
+    <!-- Default -->
+    <item android:drawable="@color/category_phrases" />
+</selector>
