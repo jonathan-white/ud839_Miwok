@@ -30,7 +30,6 @@
         android:text="@string/category_numbers" />
 
     <!-- Family category -->
-
     <TextView
         android:id="@+id/family"
         android:background="@drawable/family_touch_selector"
