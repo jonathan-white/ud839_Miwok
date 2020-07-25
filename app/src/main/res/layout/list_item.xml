@@ -8,7 +8,8 @@
         android:id="@+id/image"
         android:layout_width="@dimen/list_item_height"
         android:layout_height="@dimen/list_item_height"
-        android:background="@color/tan_background" />
+        android:background="@color/tan_background"
+        android:contentDescription="@string/app_name" />
 
     <LinearLayout
         android:id="@+id/text_container"
@@ -16,31 +17,27 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        >
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
         <TextView
             android:id="@+id/miwok_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_toRightOf="@+id/image"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textStyle="bold"
             android:layout_weight="1"
             android:gravity="bottom"
-            tools:text="lutti"
-            />
+            tools:text="lutti" />
         <TextView
             android:id="@+id/default_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_toRightOf="@+id/image"
-            android:layout_below="@+id/miwok_text_view"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:layout_weight="1"
             android:gravity="top"
-            tools:text="one"
-            />
+            tools:text="one" />
     </LinearLayout>
 
 </LinearLayout>

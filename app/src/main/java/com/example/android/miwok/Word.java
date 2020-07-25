@@ -1,12 +1,12 @@
 package com.example.android.miwok;
 
 public class Word {
-    private String mDefaultTranslation;
-    private String mMiwokTranslation;
+    private final String mDefaultTranslation;
+    private final String mMiwokTranslation;
     private int mImageResourceId = NO_IMAGE_PROVIDED;
 
     /** Audio resource ID for the word */
-    private int mAudioResourceId;
+    private final int mAudioResourceId;
 
     private static final int NO_IMAGE_PROVIDED = -1;
 
@@ -42,24 +42,6 @@ public class Word {
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
         mAudioResourceId = audioResourceId;
-    }
-
-    /**
-     * sets the Miwok translation
-     *
-     * @param word the word that will be entered as the miwok translation
-     */
-    public void setMiwokWord(String word) {
-        mMiwokTranslation = word;
-    }
-
-    /**
-     * sets the Default translation
-     *
-     * @param word the word that will be entered as the default translation
-     */
-    public void setDefaultWord(String word) {
-        mDefaultTranslation = word;
     }
 
     /**

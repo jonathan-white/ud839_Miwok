@@ -1,17 +1,12 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,9 +17,9 @@ import androidx.core.content.ContextCompat;
 public class WordAdapter extends ArrayAdapter {
 
     /**Resource ID for the background color for this list of words*/
-    private int mColorResourceId;
+    private final int mColorResourceId;
 
-    public WordAdapter(@NonNull Activity context, @NonNull ArrayList<Word> words, @NonNull int backgroundColor) {
+    public WordAdapter(@NonNull Activity context, @NonNull ArrayList<Word> words, int backgroundColor) {
         super(context, 0, words);
         mColorResourceId = backgroundColor;
     }
