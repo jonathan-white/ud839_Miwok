@@ -13,41 +13,29 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/tan_background"
     android:orientation="vertical"
     tools:context="com.example.android.miwok.MainActivity">
 
-    <!-- Numbers category -->
-    <TextView
-        android:id="@+id/numbers"
-        android:background="@drawable/numbers_touch_selector"
-        style="@style/CategoryStyle"
-        android:text="@string/category_numbers" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        app:tabTextColor="@android:color/white"
+        app:tabIndicatorColor="@color/sunshine_light_blue"
+        app:tabSelectedTextColor="@color/sunshine_light_blue"
+        />
 
-    <!-- Family category -->
-    <TextView
-        android:id="@+id/family"
-        android:background="@drawable/family_touch_selector"
-        style="@style/CategoryStyle"
-        android:text="@string/category_family" />
-
-    <!-- Colors category -->
-    <TextView
-        android:id="@+id/colors"
-        android:background="@drawable/colors_touch_selector"
-        style="@style/CategoryStyle"
-        android:text="@string/category_colors" />
-
-    <!-- Phrases category -->
-    <TextView
-        android:id="@+id/phrases"
-        android:background="@drawable/phrases_touch_selector"
-        style="@style/CategoryStyle"
-        android:text="@string/category_phrases" />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
